@@ -1,28 +1,55 @@
 let total = 0
 let numHolder = []
-let numHolderTwo = []
-let numOne = document.querySelector("#one").innerText
+let numStrHolder = []
+let numStr
+let numToAdd
+let isAdding = false
+let isSubtracting = false
+let isMultiplying = false
+let isDividing = false
+// let numOne = document.querySelector(".one").innerText
 
-document.querySelector("#one").addEventListener("click", addToNumHolder)
-// document.querySelector("#one").addEventListener("click", add3)
-document.querySelector("#zebra").addEventListener("click", add9)
-document.querySelector("#cantThinkOfAnything").addEventListener("click", sub2)
+document.querySelector(".one").addEventListener("click", displayValue)
+document.querySelector(".two").addEventListener("click", displayValue)
+document.querySelector(".three").addEventListener("click", displayValue)
+document.querySelector(".four").addEventListener("click", displayValue)
+document.querySelector(".five").addEventListener("click", displayValue)
+document.querySelector(".six").addEventListener("click", displayValue)
+document.querySelector(".seven").addEventListener("click", displayValue)
+document.querySelector(".eight").addEventListener("click", displayValue)
+document.querySelector(".nine").addEventListener("click", displayValue)
+document.querySelector(".zero").addEventListener("click", displayValue)
 
-function addToNumHolder() {
-  // let value = this.innerText
-  document.querySelector("#placeToPutResult").innerText = numOne
-  console.log("hiß")
-  // return total
-}
-
-function makeZero() {
-  total = 0
-  document.querySelector("#display").innerText = total
-}
+document.querySelector(".clear").addEventListener("click", makeZero)
+document.querySelector(".add").addEventListener("click", add)
 
 function add() {
-  total = total + 3
-  document.querySelector("#placeToPutResult").innerText = total
+  //   document.querySelector("#placeToPutResult").innerText = 0
+  isAdding = true
+  numStrHolder.push(numStr)
+  console.log(numStrHolder, "numStrHolder")
+}
+
+function displayValue() {
+  let value = this.innerText
+  if (!isAdding) {
+    numHolder.push(value)
+    numStr = parseInt(numHolder.join(""))
+    document.querySelector("#placeToPutResult").innerText = numStr
+    console.log(typeof numStr, numStr)
+  } else {
+    numHolder.push(value)
+    console.log(numHolder, "numHolder")
+    numStr = parseInt(numHolder.join(""))
+    document.querySelector("#placeToPutResult").innerText = numStr
+    console.log(typeof numStr, numStr)
+  }
+}
+// clears out the results and sets to 0
+function makeZero() {
+  numHolder = []
+  document.querySelector("#placeToPutResult").innerText = numHolder.length
+  console.log("makezero")
 }
 
 function subtract() {

@@ -16,36 +16,37 @@ Assignment: Improve the functionality of my bad calculator to include basic arit
   <body>
     <h1>Bad Calculator</h1>
     <div id="calculatorBox">
-      <input id="display" />
-      <div id="rowOne">
-        <div id="one" class="button">1</div>
-        <div id="two" class="button">2</div>
-        <div id="three" class="button">3</div>
-        <div id="add">+</div>
-      </div>
+      <div class="rowContainer">
+        <h2><span id="placeToPutResult"></span></h2>
 
-      <div id="rowTwo">
-        <div id="four" class="button">4</div>
-        <div id="five" class="button">5</div>
-        <div id="six" class="button">6</div>
-        <div id="subtract">-</div>
-      </div>
+        <div id="rowOne">
+          <div class="button one">1</div>
+          <div class="button two">2</div>
+          <div class="button three">3</div>
+          <div class="button add">+</div>
+        </div>
 
-      <div id="rowThree">
-        <div id="seven" class="button">7</div>
-        <div id="eight" class="button">8</div>
-        <div id="nine" class="button">9</div>
-        <div id="multiply">*</div>
-      </div>
+        <div id="rowTwo">
+          <div class="button four">4</div>
+          <div class="button five">5</div>
+          <div class="button six">6</div>
+          <div class="button subtract">-</div>
+        </div>
 
-      <div id="rowFour">
-        <div id="clear">C</div>
-        <div id="zero" class="button">0</div>
-        <div id="equal">=</div>
-        <div id="divide">/</div>
-      </div>
+        <div id="rowThree">
+          <div class="button seven">7</div>
+          <div class="button eight">8</div>
+          <div class="button nine">9</div>
+          <div class="button multiply">*</div>
+        </div>
 
-      <h2>Result: <span id="placeToPutResult"></span></h2>
+        <div id="rowFour">
+          <div class="button clear">C</div>
+          <div class="button zero">0</div>
+          <div class="button equal">=</div>
+          <div class="button divide">/</div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
