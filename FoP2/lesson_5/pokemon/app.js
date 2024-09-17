@@ -1,7 +1,7 @@
 document.querySelector("button").addEventListener("click", getFetch)
 
 async function getFetch() {
-  let choice = document.querySelector("input").value
+  let choice = document.querySelector("input").value.toLowerCase()
   const shinyCheckBox = document.getElementById("myCheckbox")
   const url = "https://pokeapi.co/api/v2/pokemon/" + choice
 
