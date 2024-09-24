@@ -12,6 +12,7 @@ class StreamingGuide:
         for name in self._list_of_streaming_services:
             if name.get_name() == name_of_streaming_service:
                 self._list_of_streaming_services.remove(name)
+     
 
     def where_to_watch_movie(self, movie_title):
         result = []
