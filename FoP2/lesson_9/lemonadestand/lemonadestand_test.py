@@ -30,7 +30,7 @@ class TestLemonadeStand(unittest.TestCase):
 
   def test_total_profit_for_poptart(self):
     '''Tests if the total profit for the poptart menu item is correct to six decimal places'''
-    stand = LemonadeStand('Lemon\s')
+    stand = LemonadeStand('Lemons')
     item1 = MenuItem('lemon ice', 1.0, 1.85)
     item2 = MenuItem('poptart', 0.43, 1.59)
     stand.add_menu_item(item1)
@@ -76,7 +76,7 @@ class TestLemonadeStand(unittest.TestCase):
     'chips' : 20
     }
     stand.enter_sales_for_today(day_0)
-    total_profit = stand.sales_of_menu_item_for_day(1, 'chips')
+    total_profit = stand.sales_of_menu_item_for_day(1, 'apples')
     self.assertEqual(total_profit, 'No information found for that day')
 
 

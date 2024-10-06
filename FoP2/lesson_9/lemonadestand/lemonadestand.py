@@ -24,19 +24,18 @@ class LemonadeStand:
         for item in sold_items_dict:
             if item in self._menu_dict:
                 new_sales_record_obj = SalesForDay(self._current_day, sold_items_dict)
-                self._sales_record_lst.append(new_sales_record_obj)
-                self._current_day += 1
+                
             else:
                 raise InvalidSalesItemError(f"{item} is not in the menu.")
+        self._sales_record_lst.append(new_sales_record_obj)
+        self._current_day += 1
 
     def sales_of_menu_item_for_day(self, day_of_sale, item_name):
-        for sale in self._sales_record_lst:
-            sale_obj = self._sales_record_lst[day_of_sale].get_sales_dict()
-            if sale_obj[item_name]:
-                return sale_obj[item_name]
-            else:
-                return 0
-        return 'Menu item was not found'
+        if day_of_sale >= len(self._sales_record_lst):
+            return 'No information found for that day'
+
+        sale_obj = self._sales_record_lst[day_of_sale].get_sales_dict()
+        return sale_obj.get(item_name, 0)
     
     def total_sales_for_menu_item(self, item_name):
         total = 0
@@ -46,24 +45,25 @@ class LemonadeStand:
     
     def total_profit_for_menu_item(self, item_name):
         total_sales = self.total_sales_for_menu_item(item_name)
-        gross_revenue = 0
-        gross_expense = 0
-        profit_of_item = gross_revenue - gross_expense
-        for i, sale in enumerate(self._sales_record_lst):
-            menu_obj = self._menu_dict[item_name]
-            gross_revenue += total_sales * menu_obj.get_selling_price()
-            gross_expense += total_sales * menu_obj.get_wholesale_cost()
+        menu_obj = self._menu_dict[item_name]
+        print(menu_obj)
+        gross_revenue = total_sales * menu_obj.get_selling_price()
+        gross_expense = total_sales * menu_obj.get_wholesale_cost()
+
         profit_of_item = gross_revenue - gross_expense 
-        # print(profit_of_item)
+        # print(profit_of_item,'pro',self._sales_record_lst)
         return profit_of_item
 
     def total_profit_for_stand(self):
         total_stand_profit = 0
-        for i, sale in enumerate(self._sales_record_lst):
-            menu_obj_name = self._sales_record_lst[i].get_sales_dict()
-            for name in menu_obj_name.keys():
-                total_stand_profit += self.total_profit_for_menu_item(name)               
-        # print(total_stand_profit, 'here')
+        for sale in self._sales_record_lst:
+            sales_obj = sale.get_sales_dict()
+            # print(sales_obj)
+            for item_name, quantity_sold in sales_obj.items(): 
+                menu_item = self._menu_dict[item_name]  
+                daily_revenue = quantity_sold * menu_item.get_selling_price()
+                daily_cost = quantity_sold * menu_item.get_wholesale_cost()
+                total_stand_profit += (daily_revenue - daily_cost)       
         return total_stand_profit
 
 
@@ -81,9 +81,16 @@ day_0_sales = {
     'cookie'   : 2
 }
 
-stand.enter_sales_for_today(day_0_sales)  # Record the sales for day zero
+day_1_sales = {
+    'lemonade' : 5,
+    'cookie'   : 2
+}
 
-stand.sales_of_menu_item_for_day(0, 'lemonade')
+stand.enter_sales_for_today(day_0_sales)  # Record the sales for day zero
+stand.enter_sales_for_today(day_1_sales)
+
+stand.sales_of_menu_item_for_day(0, 'lemonade'), 'sale of item'
+# stand.sales_of_menu_item_for_day(1, 'lemonade')
 print(f"lemonade profit = {stand.total_profit_for_menu_item('lemonade')}")  # print the total profit for lemonade so far
 
-stand.total_profit_for_stand()
+print(stand.total_profit_for_stand())
