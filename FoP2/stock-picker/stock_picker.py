@@ -19,7 +19,7 @@ def stock_picker(prices):
             lowest_price = current_price
             lowest_index = i
       
-    print( best_buy_index,best_sell_index )
+    # print( best_buy_index,best_sell_index )
     return [best_buy_index, best_sell_index]
 
 print(stock_picker([17,3,6,9,15,8,6,1,10])) # => [1,4]
