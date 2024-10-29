@@ -32,16 +32,23 @@ print(sum_digits(1234)) # = 10
 
 
 # Given a string, find the index of the first number. E.g. idx_first_num("str1ng") = 3
-def idx_first_num(input_str):
-    char_split = list(input_str)
+def idx_first_num(input_str, index=0):
+    if not input_str:
+        return -1
     
-    for char in char_split:
-        try:
-            char_int = int(char)
-            return char_split.index(char)
-        except ValueError:
-            print("Not an integer")
+    if input_str[0].isdigit():
+        return index
+    
+    return idx_first_num(input_str[1:], index + 1)    
+    # char_split = list(input_str)
+    
+    # for char in char_split:
+    #     try:
+    #         char_int = int(char)
+    #         return char_split.index(char)
+    #     except ValueError:
+    #         print("Not an integer")
            
-    return idx_first_num(input_str[1:])
+    # return idx_first_num(input_str[1:])
 
 print(idx_first_num("str1ng")) #3
